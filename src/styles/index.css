@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* Скрываем полосу скролла для Chrome, Safari и Opera */
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Скрываем полосу скролла для IE, Edge и Firefox */
+html {
+    -ms-overflow-style: none;
+    /* IE и Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    scroll-behavior: smooth;
+}
+
+/* В самый низ CSS файла */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: auto !important;
+    /* Даем Lenis управлять высотой */
+    overflow-x: hidden;
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+@font-face {
+    font-family: 'Eater';
+    src: url('../assets/fonts/Eater-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'RubikGlitch';
+    src: url('../assets/fonts/RubikGlitch-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Syne';
+    src: url('../assets/fonts/Syne-Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@theme {
+  --font-eater: Eater, sans-serif;
+  --font-rubik: RubikGlitch, sans-serif;
+  --font-syne: Syne, sans-serif;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+    /* Отключаем нативную плавность браузера */
+}
+
+/* Твои классы .card и т.д. остаются ниже без изменений */
+
+.card {
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.card:hover {
+    opacity: 0.7;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+
+}
+
+.card h3 {
+    font-weight: 500;
+    font-size: 1.2rem;
+}
+
+.card p {
+    color: #888
+}
+
+/* Стили для плавной работы виртуального скролла Lenis */
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+@keyframes headlights {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.animate-headlights {
+  /* Эффект прорези: градиент горит только внутри букв */
+  background: radial-gradient(circle at center, #ffffff 30%, #a3a3a3 70%, #333333 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: headlights 4s ease-in-out infinite;
+}
+
+@keyframes arrow-glitch {
+  0% { opacity: 0.8; filter: drop-shadow(0 0 0px #fff); }
+  15% { opacity: 0.1; filter: brightness(3) drop-shadow(0 0 15px #fff); }
+  17% { opacity: 1; }
+  30% { opacity: 0.2; }
+  32% { opacity: 1; filter: brightness(2); }
+  75% { opacity: 0.9; }
+  77% { opacity: 0.1; filter: drop-shadow(0 0 20px #fff); }
+  80% { opacity: 1; }
+  100% { opacity: 1; filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.9)) brightness(1.2); }
+}
+
+@keyframes horror-flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 1;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.8));
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.1;
+    filter: none;
+  }
+}
+
+.animate-flicker {
+  animation: horror-flicker 3s infinite;
+}
+
+.animate-glitch-arrow {
+  animation: arrow-glitch 0.33s ease-in-out 2.2s 3 forwards; 
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+section, .snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
